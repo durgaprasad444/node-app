@@ -3,6 +3,9 @@
   "description": "hello node app",
   "version": "0.0.2",
   "private": true,
+  "publishConfig": {
+    "registry": "http://35.222.106.6:8081/repository/npm-app/"
+  },
   "scripts": {
     "start": "node index.js",
     "test": "node_modules/.bin/mocha -w"
