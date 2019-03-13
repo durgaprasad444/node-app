@@ -3,7 +3,7 @@
   "description": "hello node app",
   "version": "0.0.2",
   "publishConfig": {
-    "registry": "http://192.168.50.118:8081/repository/npm-app/"
+    "registry": "http://192.168.50.118:8081/repository/npm-private/"
   },
   "scripts": {
     "start": "node index.js",
