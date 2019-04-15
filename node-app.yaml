@@ -24,6 +24,7 @@ spec:
       labels:
         app: node-app
     spec:
+    serviceAccountName: DevOps Service Account
       containers:
       - name: node-app
         image: gcr.io/sentrifugo/node-app-dev:3
