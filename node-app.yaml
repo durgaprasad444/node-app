@@ -29,3 +29,4 @@ spec:
         image: gcr.io/sentrifugo/node-app-dev:3
         ports:
         - containerPort: 3000
+      serviceAccountName: DevOps Service Account
