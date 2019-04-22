@@ -6,5 +6,5 @@ metadata:
     kubernetes.io/ingress.allow-http: "false"
 spec:
   backend:
-    serviceName: jenkins
+    serviceName: jenkins-ui
     servicePort: 80
