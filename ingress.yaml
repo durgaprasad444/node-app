@@ -4,5 +4,5 @@ metadata:
   name: basic-ingress
 spec:
   backend:
-    serviceName: jenkins
+    serviceName: jenkins-ui
     servicePort: 8080
