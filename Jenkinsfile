@@ -10,7 +10,15 @@ volumes: [
         def tag = "dev"
             stage("clone code") {
                 container('slave1') {                  
-  git 'https://github.com/durgaprasad444/node-app.git';
+  stage 'checkout  repository'
+  checkout([$class: 'GitSCM',
+        branches: [[name: '*/master']],
+        doGenerateSubmoduleConfigurations: false,
+        extensions: [],
+        submoduleCfg: [],
+        userRemoteConfigs: [[
+            
+            url: 'https://github.com/durgaprasad444/node-app.git'
     ]]])
 
                 }
