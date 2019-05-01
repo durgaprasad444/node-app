@@ -30,7 +30,7 @@ volumes: [
 usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
                    sh """
                       cd /home/jenkins/workspace/node-app
-                      echo "registry=url/repository/npm-group/" >> .npmrc
+                      echo "registry=http://35.196.136.112:8081/repository/npm-group/" >> .npmrc
                       echo -n '${USERNAME}:${PASSWORD}' | openssl base64 >> .npmrc
                       sed -i '2 s/^/_auth=/' .npmrc
                       echo -e "email=nexus@gmail.com\nalways-auth=true" >> .npmrc
