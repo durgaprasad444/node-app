@@ -1,6 +1,6 @@
 def label = "jenkins-slave-${UUID.randomUUID().toString()}"
 podTemplate(label: label, containers: [
-    containerTemplate(name: 'slave1', image: 'gcr.io/sentrifugo/jenkins-slave:v1', ttyEnabled: true, command: 'cat')
+    containerTemplate(name: 'slave1', image: '/jenkins-slave:v1', ttyEnabled: true, command: 'cat')
 ],
 volumes: [
   hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock')
@@ -30,7 +30,7 @@ volumes: [
 usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
                    sh """
                       cd /home/jenkins/workspace/node-app
-                      echo "registry=http://35.196.136.112:8081/repository/npm-group/" >> .npmrc
+                      echo "registry=/repository/npm-group/" >> .npmrc
                       echo -n '${USERNAME}:${PASSWORD}' | openssl base64 >> .npmrc
                       sed -i '2 s/^/_auth=/' .npmrc
                       echo -e "email=nexus@gmail.com\nalways-auth=true" >> .npmrc
@@ -45,7 +45,7 @@ stage('Build image') {
             container('slave1') {
                 sh """
                 cd /home/jenkins/workspace/node-app
-                docker build -t gcr.io/sentrifugo/${APP_NAME}-${tag}:$BUILD_NUMBER .
+                docker build -t /${APP_NAME}-${tag}:$BUILD_NUMBER .
                 """
                 
   
@@ -54,7 +54,7 @@ stage('Build image') {
 stage('Push image') {
     container('slave1') {
   docker.withRegistry('https://gcr.io', 'gcr:sentrifugo') {
-      sh "docker push gcr.io/sentrifugo/${APP_NAME}-${tag}:$BUILD_NUMBER"
+      sh "docker push /${APP_NAME}-${tag}:$BUILD_NUMBER"
     
     
   }
