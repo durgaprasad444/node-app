@@ -1,0 +1,3 @@
+pipelineType: "nodeexample"
+appname: "node-app"
+env: "dev"
